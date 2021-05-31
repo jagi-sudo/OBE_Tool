@@ -1,0 +1,22 @@
+  
+table.a {
+    table-layout: auto;
+    width: 50%;  	
+
+  }
+
+table.b {
+  table-layout: auto;
+  width: 80%;
+	
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1920px) {
+ 
+}
+
+table.d{
+background-color: #d0e9c6;
+empty-cells: hide;
+}
+
