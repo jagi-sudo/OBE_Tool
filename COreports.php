@@ -11,6 +11,7 @@ $id = $_SESSION['user_id'];
 $desgn=$_SESSION['desgn'];
 $conn=new mysqli($host,$user,$pass,$db);
 $branch=$_SESSION['branch'];
+$check = "LAB";
 $query="SELECT DISTINCT * FROM `$branch` WHERE `teacher_id`='$id'";
 $result = mysqli_query($conn,$query) or die("ERROR".mysqli_error($conn));
 if(isset($_POST['can_cred'])){
@@ -131,8 +132,6 @@ if(isset($_POST['can_cred'])){
 <hr>
 <?php
 if(isset($_POST["import"])){
-
-  // $Threshold_Marks=0;
   $internal=0;
   $intlv1=0;
   $intlv3=0;
@@ -141,6 +140,15 @@ if(isset($_POST["import"])){
   $sub_code=explode(" ",$_POST['course'])[3];
   $sem=explode(" ",$_POST['course'])[6];
   $year=explode(" ",$_POST['course'])[10];
+  
+  // $Threshold_Marks=0;
+  if(strpos($sub,$check)==TRUE){
+    echo '<script>alert("CO Attainment cannot be achieved for LAB Courses!!!");
+    window.location = ("COreports.php");
+    </script>';
+  }
+  else{
+
 
   $fetch_query = "SELECT * FROM `threshold_values` WHERE `sub`='$sub' AND `subject-code`='$sub_code'";
   $fetch_values = mysqli_query($conn,$fetch_query) or die("ERROR".mysqli_error($conn));
@@ -952,7 +960,7 @@ if(isset($_POST["import"])){
   }
 
 ?>
-<?} ?>
+<?}} ?>
 
 </div>
 <div id='result'></div>
